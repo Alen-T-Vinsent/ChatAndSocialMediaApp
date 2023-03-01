@@ -18,13 +18,19 @@ struct DirectMessageView: View {
     @State private var isRotating:Double = 0.0
     @State var messageOwner:MessageOwner = .me
     
+    
+    @State var selectedEmojis = false
+    @State var selectEmoj = false
+    
+    
+    
     let screenWidth = UIScreen.main.bounds.width
     
      @ObservedObject var  stopWatchManager = StopWatchManager()
     
 
     
-    let messageList:[MessageModel] = [
+    @State var messageList:[MessageModel] = [
         MessageModel(owner: .me, time: "11.00 AM", sender: "Alen", reciever: "Alena", messageType: .textMessage, message: "hello"),
         MessageModel(owner: .otherPerson, time: "11.00 AM", sender: "Alena", reciever: "Alen", messageType: .textMessage,message:"hai"),
         MessageModel(owner: .otherPerson, time: "11.01 AM", sender: "Alena", reciever: "Alen", messageType: .textMessage,message:"How are you"),
@@ -76,13 +82,13 @@ struct DirectMessageView: View {
             
             ScrollView{
                 
-                ForEach(messageList,id:\.self){ eachPerson in
-                    if eachPerson.owner == .me{
+                ForEach(Array(messageList.enumerated()),id:\.offset){ index , eachItem in
+                    if eachItem.owner == .me{
                         //Message of me
                         HStack{
                             
                             Spacer()
-                            Text(eachPerson.message)
+                            Text(eachItem.message)
                                 .padding()
                                 .background(content: {
                                     Rectangle()
@@ -90,16 +96,25 @@ struct DirectMessageView: View {
                                         .cornerRadius(radius: 20.0, corners: [.topLeft,.topRight,.bottomLeft])
                                 })
                                 .padding(.horizontal)
+                            //MARK: red bg on click modifier
+//                                .modifier(SelectionSquare(select: $selectedEmojis))
                         }
+                        .onTapGesture(perform: {
+                            print("i am  => \(eachItem.message)")
+                            messageList[index].message = " * message deleted"
+                        })
+                        
                         .padding(.top,1)
-                        .padding(.trailing)
+                        .onLongPressGesture {
+                            print("long pressed on \(eachItem.message)")
+                        }
 
                        
                     }else{
                         //Message of other
                         HStack{
                            
-                            Text(eachPerson.message)
+                            Text(eachItem.message)
                                 .padding()
                                 .background(content: {
                                     Rectangle()
@@ -112,7 +127,15 @@ struct DirectMessageView: View {
                                 
                         }
                         .padding(.top,1)
-                        .padding(.trailing)
+                        .onTapGesture(perform: {
+                            print("i am  => \(eachItem.message)")
+                            messageList[index].message = " * message deleted *"
+                        })
+                        
+                        .onLongPressGesture {
+                            print("long pressed on \(eachItem.message)")
+                        }
+
                         
                     }
                 }
@@ -147,9 +170,23 @@ struct DirectMessageView: View {
                         })
                 }
                 .onTapGesture {
-                    print("closing record")
-                    withAnimation{
-                        showEnlargedMic = false
+                    if messageTxtField == "" {
+                        print("enlarge audio button")
+                        withAnimation {
+                            showEnlargedMic.toggle()
+                        }
+                        
+                        if stopWatchManager.mode == .running{
+                            print("stop watch stoping")
+                            stopWatchManager.stop()
+                        }else{
+                                print("stop watch starting")
+                                stopWatchManager.start()
+                        }
+                        
+                    }else{
+                        print("send message")
+                        
                     }
                 }
                     
@@ -324,7 +361,33 @@ struct MessageModel:Hashable{
     let sender:String
     let reciever:String
     let messageType:MessageType
-    let message:String
+    var message:String
     
 }
 
+
+
+//MARK: Do selection when holded
+struct SelectionSquare: ViewModifier {
+    
+    @Binding var select: Bool
+
+    
+    func body(content: Content) -> some View {
+        
+        self.setBorder(to: content)
+            .onTapGesture {
+                select.toggle()
+            }
+    }
+    
+    @ViewBuilder
+    private func setBorder(to content: Content) -> some View{
+        if select {
+            content
+                .overlay(Rectangle().fill(Color.clear).border(Color.red, width: 2.0))
+        } else {
+            content
+        }
+    }
+}

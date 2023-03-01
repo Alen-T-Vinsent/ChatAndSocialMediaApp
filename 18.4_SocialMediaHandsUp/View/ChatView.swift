@@ -11,6 +11,7 @@ struct ChatView: View {
     let sampleArray = ["1","2","3","4","5","6","7","8","9"]
     @State var isAnimating = false
     @State var showDMView = false
+    @State var displayAddNewFriendView = false
     var body: some View {
         NavigationStack {
             VStack{
@@ -24,10 +25,18 @@ struct ChatView: View {
                         }
                         .listRowBackground(Color("simpleWhite"))
                         .listRowSeparator(.hidden)
+                        HStack{
+                            
+                        }
+                        .frame(width: UIScreen.main.bounds.width)
+                        .frame(height: 90)
+                        .background(Color("simpleWhite"))
                     }
                     .listStyle(.plain)
                     
+                    
                 }
+                .background(Color("simpleWhite"))
             }
 
             .overlay(alignment:.bottomTrailing){
@@ -35,9 +44,11 @@ struct ChatView: View {
                     .resizable()
                     .frame(width: 60,height: 60)
                     .foregroundColor(Color("lightBlue"))
-    //                .offset(x:-25,y:-120)
                     .offset(x: -25 )
                     .offset(y: isAnimating ? -115 : -100)
+                    .onTapGesture {
+                        displayAddNewFriendView = true
+                    }
                     .onAppear {
                         isAnimating = true
                     }
@@ -58,6 +69,9 @@ struct ChatView: View {
         }
         .fullScreenCover(isPresented: $showDMView, content: {
             DirectMessageView(showDMView: $showDMView)
+        })
+        .fullScreenCover(isPresented: $displayAddNewFriendView, content: {
+                AddNewFriendView(displayAddNewFriendView: $displayAddNewFriendView)
         })
         .accentColor(Color("darkBlue"))
   

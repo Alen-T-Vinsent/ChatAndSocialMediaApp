@@ -17,7 +17,9 @@
 		180C983629ACD7E6006C72BA /* EachChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C983529ACD7E6006C72BA /* EachChatView.swift */; };
 		180C983829ACF825006C72BA /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C983729ACF825006C72BA /* AccountView.swift */; };
 		180C983A29AE0AAC006C72BA /* RecordAudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C983929AE0AAC006C72BA /* RecordAudioView.swift */; };
-		180C983C29AF371C006C72BA /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C983B29AF371C006C72BA /* TestView.swift */; };
+		180C983C29AF371C006C72BA /* CornerRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C983B29AF371C006C72BA /* CornerRadiusView.swift */; };
+		180C983E29AF4B85006C72BA /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C983D29AF4B85006C72BA /* TestView.swift */; };
+		180C984029AF4E32006C72BA /* AddNewFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C983F29AF4E32006C72BA /* AddNewFriendView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +34,9 @@
 		180C983529ACD7E6006C72BA /* EachChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EachChatView.swift; sourceTree = "<group>"; };
 		180C983729ACF825006C72BA /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		180C983929AE0AAC006C72BA /* RecordAudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordAudioView.swift; sourceTree = "<group>"; };
-		180C983B29AF371C006C72BA /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		180C983B29AF371C006C72BA /* CornerRadiusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusView.swift; sourceTree = "<group>"; };
+		180C983D29AF4B85006C72BA /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		180C983F29AF4E32006C72BA /* AddNewFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFriendView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,11 +91,13 @@
 			children = (
 				180C983029ACD297006C72BA /* FloatingTabBarView.swift */,
 				180C983229ACD646006C72BA /* ChatView.swift */,
+				180C983F29AF4E32006C72BA /* AddNewFriendView.swift */,
 				180C982C29ACD15B006C72BA /* DirectMessageView.swift */,
 				180C983529ACD7E6006C72BA /* EachChatView.swift */,
 				180C983729ACF825006C72BA /* AccountView.swift */,
 				180C983929AE0AAC006C72BA /* RecordAudioView.swift */,
-				180C983B29AF371C006C72BA /* TestView.swift */,
+				180C983B29AF371C006C72BA /* CornerRadiusView.swift */,
+				180C983D29AF4B85006C72BA /* TestView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -172,8 +178,10 @@
 				180C983329ACD646006C72BA /* ChatView.swift in Sources */,
 				180C983A29AE0AAC006C72BA /* RecordAudioView.swift in Sources */,
 				180C981F29ACC468006C72BA /* _8_4_SocialMediaHandsUpApp.swift in Sources */,
-				180C983C29AF371C006C72BA /* TestView.swift in Sources */,
+				180C983E29AF4B85006C72BA /* TestView.swift in Sources */,
+				180C983C29AF371C006C72BA /* CornerRadiusView.swift in Sources */,
 				180C983129ACD297006C72BA /* FloatingTabBarView.swift in Sources */,
+				180C984029AF4E32006C72BA /* AddNewFriendView.swift in Sources */,
 				180C983829ACF825006C72BA /* AccountView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
