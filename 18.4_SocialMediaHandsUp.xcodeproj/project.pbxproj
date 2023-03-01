@@ -20,6 +20,10 @@
 		180C983C29AF371C006C72BA /* CornerRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C983B29AF371C006C72BA /* CornerRadiusView.swift */; };
 		180C983E29AF4B85006C72BA /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C983D29AF4B85006C72BA /* TestView.swift */; };
 		180C984029AF4E32006C72BA /* AddNewFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180C983F29AF4E32006C72BA /* AddNewFriendView.swift */; };
+		180C984329AFBD8C006C72BA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 180C984229AFBD8C006C72BA /* FirebaseAuth */; };
+		180C984529AFBD8C006C72BA /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 180C984429AFBD8C006C72BA /* FirebaseFirestore */; };
+		180C984729AFBD8C006C72BA /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 180C984629AFBD8C006C72BA /* FirebaseStorage */; };
+		180C984929AFBEFB006C72BA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 180C984829AFBEFB006C72BA /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,8 @@
 		180C983B29AF371C006C72BA /* CornerRadiusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusView.swift; sourceTree = "<group>"; };
 		180C983D29AF4B85006C72BA /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		180C983F29AF4E32006C72BA /* AddNewFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewFriendView.swift; sourceTree = "<group>"; };
+		180C984829AFBEFB006C72BA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		180C984A29AFC898006C72BA /* -8-4-SocialMediaHandsUp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "-8-4-SocialMediaHandsUp-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +50,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				180C984329AFBD8C006C72BA /* FirebaseAuth in Frameworks */,
+				180C984529AFBD8C006C72BA /* FirebaseFirestore in Frameworks */,
+				180C984729AFBD8C006C72BA /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,7 +78,9 @@
 		180C981D29ACC468006C72BA /* 18.4_SocialMediaHandsUp */ = {
 			isa = PBXGroup;
 			children = (
+				180C984A29AFC898006C72BA /* -8-4-SocialMediaHandsUp-Info.plist */,
 				180C981E29ACC468006C72BA /* _8_4_SocialMediaHandsUpApp.swift */,
+				180C984829AFBEFB006C72BA /* GoogleService-Info.plist */,
 				180C982029ACC468006C72BA /* ContentView.swift */,
 				180C983429ACD651006C72BA /* View */,
 				180C982229ACC469006C72BA /* Assets.xcassets */,
@@ -118,6 +129,11 @@
 			dependencies = (
 			);
 			name = 18.4_SocialMediaHandsUp;
+			packageProductDependencies = (
+				180C984229AFBD8C006C72BA /* FirebaseAuth */,
+				180C984429AFBD8C006C72BA /* FirebaseFirestore */,
+				180C984629AFBD8C006C72BA /* FirebaseStorage */,
+			);
 			productName = 18.4_SocialMediaHandsUp;
 			productReference = 180C981B29ACC468006C72BA /* 18.4_SocialMediaHandsUp.app */;
 			productType = "com.apple.product-type.application";
@@ -146,6 +162,9 @@
 				Base,
 			);
 			mainGroup = 180C981229ACC468006C72BA;
+			packageReferences = (
+				180C984129AFBD8C006C72BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 180C981C29ACC468006C72BA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -162,6 +181,7 @@
 			files = (
 				180C982629ACC469006C72BA /* Preview Assets.xcassets in Resources */,
 				180C982329ACC469006C72BA /* Assets.xcassets in Resources */,
+				180C984929AFBEFB006C72BA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +334,7 @@
 				DEVELOPMENT_TEAM = 65Y36WN836;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "-8-4-SocialMediaHandsUp-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -343,6 +364,7 @@
 				DEVELOPMENT_TEAM = 65Y36WN836;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "-8-4-SocialMediaHandsUp-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -383,6 +405,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		180C984129AFBD8C006C72BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		180C984229AFBD8C006C72BA /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 180C984129AFBD8C006C72BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		180C984429AFBD8C006C72BA /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 180C984129AFBD8C006C72BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		180C984629AFBD8C006C72BA /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 180C984129AFBD8C006C72BA /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 180C981329ACC468006C72BA /* Project object */;
 }

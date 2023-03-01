@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct _8_4_SocialMediaHandsUpApp: App {
+    @StateObject var firestoreManager = FirestoreManager()
+    init(){
+        FirebaseApp.configure()
+    }
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(firestoreManager)
         }
     }
 }

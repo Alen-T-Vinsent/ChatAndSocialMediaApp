@@ -11,6 +11,7 @@ struct DirectMessageView: View {
     
     //MARK: PROPERTIES
     @Binding var showDMView:Bool
+    @Binding var friendsName:String
     @State private var messageTxtField = ""
     @State private var showLockRecord = false
     @State private var showEnlargedMic = false
@@ -50,10 +51,10 @@ struct DirectMessageView: View {
             Image(systemName: "arrow.left")
                 .padding(.leading,10)
                 .onTapGesture {
-                    showDMView = false
+                   showDMView = false
                 }
             Image(systemName: "person.fill")
-            Text("Your friends Name")
+            Text("\(friendsName)")
                 .font(.subheadline)
                 .bold()
             Spacer()
@@ -82,63 +83,63 @@ struct DirectMessageView: View {
             
             ScrollView{
                 
-                ForEach(Array(messageList.enumerated()),id:\.offset){ index , eachItem in
-                    if eachItem.owner == .me{
-                        //Message of me
-                        HStack{
-                            
-                            Spacer()
-                            Text(eachItem.message)
-                                .padding()
-                                .background(content: {
-                                    Rectangle()
-                                        .fill(.red)
-                                        .cornerRadius(radius: 20.0, corners: [.topLeft,.topRight,.bottomLeft])
-                                })
-                                .padding(.horizontal)
-                            //MARK: red bg on click modifier
-//                                .modifier(SelectionSquare(select: $selectedEmojis))
-                        }
-                        .onTapGesture(perform: {
-                            print("i am  => \(eachItem.message)")
-                            messageList[index].message = " * message deleted"
-                        })
-                        
-                        .padding(.top,1)
-                        .onLongPressGesture {
-                            print("long pressed on \(eachItem.message)")
-                        }
-
-                       
-                    }else{
-                        //Message of other
-                        HStack{
-                           
-                            Text(eachItem.message)
-                                .padding()
-                                .background(content: {
-                                    Rectangle()
-                                        .fill(.green)
-                                        .cornerRadius(radius: 20.0, corners: [.topLeft,.topRight,.bottomRight])
-                                })
-                                .padding(.horizontal)
-                            
-                            Spacer()
-                                
-                        }
-                        .padding(.top,1)
-                        .onTapGesture(perform: {
-                            print("i am  => \(eachItem.message)")
-                            messageList[index].message = " * message deleted *"
-                        })
-                        
-                        .onLongPressGesture {
-                            print("long pressed on \(eachItem.message)")
-                        }
-
-                        
-                    }
-                }
+//                ForEach(Array(messageList.enumerated()),id:\.offset){ index , eachItem in
+//                    if eachItem.owner == .me{
+//                        //Message of me
+//                        HStack{
+//
+//                            Spacer()
+//                            Text(eachItem.message)
+//                                .padding()
+//                                .background(content: {
+//                                    Rectangle()
+//                                        .fill(.red)
+//                                        .cornerRadius(radius: 20.0, corners: [.topLeft,.topRight,.bottomLeft])
+//                                })
+//                                .padding(.horizontal)
+//                            //MARK: red bg on click modifier
+////                                .modifier(SelectionSquare(select: $selectedEmojis))
+//                        }
+//                        .onTapGesture(perform: {
+//                            print("i am  => \(eachItem.message)")
+//                            messageList[index].message = " * message deleted"
+//                        })
+//
+//                        .padding(.top,1)
+//                        .onLongPressGesture {
+//                            print("long pressed on \(eachItem.message)")
+//                        }
+//
+//
+//                    }else{
+//                        //Message of other
+//                        HStack{
+//
+//                            Text(eachItem.message)
+//                                .padding()
+//                                .background(content: {
+//                                    Rectangle()
+//                                        .fill(.green)
+//                                        .cornerRadius(radius: 20.0, corners: [.topLeft,.topRight,.bottomRight])
+//                                })
+//                                .padding(.horizontal)
+//
+//                            Spacer()
+//
+//                        }
+//                        .padding(.top,1)
+//                        .onTapGesture(perform: {
+//                            print("i am  => \(eachItem.message)")
+//                            messageList[index].message = " * message deleted *"
+//                        })
+//
+//                        .onLongPressGesture {
+//                            print("long pressed on \(eachItem.message)")
+//                        }
+//
+//
+//                    }
+//                }
                 
                
                 Text(String(format:"%.1f",stopWatchManager.secondsElapsed))
@@ -345,6 +346,13 @@ enum MessageOwner{
 enum MessageType{
     case textMessage
     case voiceMessage
+}
+
+enum ConnectionStatus{
+    case hasConnection
+    case noConncetion
+    case blocked
+    case archieved
 }
 
 struct MessageModel:Hashable{

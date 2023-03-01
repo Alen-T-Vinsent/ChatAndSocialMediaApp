@@ -20,13 +20,15 @@ struct EachChatView: View {
                 .padding()
                 .foregroundColor(.pink)
             VStack{
-                Text("\(name) i am name")
+                Text("\(name)")
                 Text("i am message")
                     .font(.footnote)
+
                     
             }
             Spacer()
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
         .frame(width: screenWidth)
         .frame(height: 80)

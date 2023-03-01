@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    //MARK: CurrentUser Details
+    @AppStorage("userName") var userName = "user1"
+    
     var body: some View {
        FloatingTabBarView()
 //        TestView1()

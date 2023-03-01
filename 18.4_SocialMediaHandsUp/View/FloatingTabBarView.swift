@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct FloatingTabBarView: View {
     
     var tabs = ["house.fill", "rectangle.stack", "basket", "person"]
     
     @State var selectedTab = "house.fill"
+    @AppStorage("userName") var userName = "user1"
+    @State var usersArrayList:[String] = []
     
     // Location of each curve
     @State var xAxis: CGFloat = 0
@@ -80,9 +83,12 @@ struct FloatingTabBarView: View {
             .padding(.horizontal)
             // Bottom edge....
             .padding(.bottom , UIApplication.shared.windows.first?.safeAreaInsets.bottom)
+            //MARK: fetching all users
+            
         }
         .ignoresSafeArea(.all, edges: .all)
     }
+
 }
 
 struct FloatingTabBar_Previews: PreviewProvider {

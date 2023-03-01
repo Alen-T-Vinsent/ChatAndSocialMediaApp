@@ -6,23 +6,30 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ChatView: View {
     let sampleArray = ["1","2","3","4","5","6","7","8","9"]
     @State var isAnimating = false
     @State var showDMView = false
     @State var displayAddNewFriendView = false
+    @State var friendsName = "friends Name"
+    @State var usersArrayList:[String] = []
+    @AppStorage("userName") var userName = "user1"
+    
     var body: some View {
         NavigationStack {
             VStack{
                 HStack{
                     List {
-                        ForEach(sampleArray,id:\.self){ eachIndex in
-                            EachChatView(name: eachIndex)
+                        ForEach(Array(usersArrayList.enumerated()),id:\.offset){ index,element in
+                            EachChatView(name: element)
                             .onTapGesture {
                                 showDMView = true
+                                friendsName = element
                             }
                         }
+                        
                         .listRowBackground(Color("simpleWhite"))
                         .listRowSeparator(.hidden)
                         HStack{
@@ -57,9 +64,7 @@ struct ChatView: View {
                             .easeInOut(duration: 4)
                             .repeatForever(),
                         value: isAnimating)
-                
             }
-            
             .navigationTitle("Chats")
             .navigationViewStyle(.stack)
             .toolbarBackground(
@@ -68,16 +73,48 @@ struct ChatView: View {
             .toolbarBackground(.visible, for: .navigationBar)
         }
         .fullScreenCover(isPresented: $showDMView, content: {
-            DirectMessageView(showDMView: $showDMView)
+            DirectMessageView(showDMView: $showDMView, friendsName: $friendsName)
         })
         .fullScreenCover(isPresented: $displayAddNewFriendView, content: {
                 AddNewFriendView(displayAddNewFriendView: $displayAddNewFriendView)
+                .environmentObject(FirestoreManager())
         })
+        .onAppear {
+                usersArrayList = fetchAllUsersAndAddToUsersList()
+        }
         .accentColor(Color("darkBlue"))
   
         
     }
+    
+    
+    //MARK: need to delete
+    func fetchAllUsersAndAddToUsersList() -> [String]{
+        let db = Firestore.firestore()
+        
+        db.collection("Users").getDocuments() { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    //MARK: To print String : Dictionary<String, Any>
+                    //print("\(document.documentID): \(document.data())")
+                    // print( "\(type(of: document.documentID)) : \(type(of: document.data()))")
+                    if userName != document.documentID{
+                        self.usersArrayList.append(document.documentID)
+                    }
+                }
+                print("fetchAllUsersAndAddToUsersList => \(self.usersArrayList)")
+                
+            }
+            
+        }
+        print("dfsdf => \(self.usersArrayList)")
+        return self.usersArrayList
+    }
 }
+
+
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
